@@ -1,0 +1,79 @@
+// ---------- ENTIDADES ---------
+
+Table alunos {
+  id serial [pk]
+  cpfAluno char(11) [not null, unique]
+  nomeAluno varchar(80) [not null]
+  emailAluno varchar(40)
+  telefoneAluno bigint [not null]
+  dataNascimento date 
+  responsavel varchar(80)
+  prioridade char(1) [default: 'B'] // 1: Baixo 2: Médio 3: Alto
+  inicioAtendimento date [not null]
+  fimAtendimento date
+}
+
+Table necessidades {
+  id serial [pk]
+  cid varchar(5) [not null, unique]
+  descricaoSimples varchar(255) [not null]
+  descricaoTecnica varchar(255)
+}
+
+Table cursos {
+  id serial [pk]
+  descricaoCurso varchar(255) [not null]
+  turno varchar(15)
+  semestral boolean [default: true]
+}
+
+Table acoes {
+  id serial [pk]
+  descricaoAcao varchar(255) [not null]
+  dataHoraCriacao datetime [default: 'now()']
+  motivacaoAcao varchar(255)
+  resultadoAcao varchar(255)
+  dataHoraResultado datetime
+  aluno integer [not null]
+  monitor integer [not null]
+}
+
+Table monitores {
+  id serial [pk]
+  cpfMonitor char(11) [not null, unique]
+  nomeMonitor varchar(80) [not null]
+  emailMonitor varchar(40) [not null]
+  telefoneMonitor bigint [not null]
+  horarioAtendimentoMonitor varchar(100) [not null]
+  formacaoMonitor varchar(100)
+  supervisor integer [not null]
+}
+
+Table membros {
+  id serial [pk]
+  siape varchar(8) [not null, unique]
+  nomeMembro varchar(100) [not null]
+  emailMembro varchar(50) [not null]
+  telefoneMembro bigint [not null]
+  formacaoMembro varchar(100)
+  horarioAtendimentoMembro varchar(100) [not null]
+}
+
+Table cargos {
+  id serial [pk]
+  descricaoCargo varchar(50) [not null]
+}
+
+// ---------- RELACIONAMENTOS ---------
+
+Ref: alunos.id <> necessidades.id
+
+Ref: alunos.id <> cursos.id // matricula
+
+Ref: acoes.aluno > alunos.id
+
+Ref: acoes.monitor > monitores.id
+
+Ref: monitores.supervisor > membros.id
+
+Ref: membros.id <> cargos.id // dataEntrada dataSaida
