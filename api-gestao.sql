@@ -28,10 +28,10 @@ CREATE TABLE "cursos" (
 CREATE TABLE "acoes" (
   "id" serial PRIMARY KEY,
   "descricaoAcao" varchar(255) NOT NULL,
-  "dataHoraCriacao" datetime DEFAULT 'now()',
+  "dataHoraCriacao" timestamptz DEFAULT 'now()',
   "motivacaoAcao" varchar(255),
   "resultadoAcao" varchar(255),
-  "dataHoraResultado" datetime,
+  "dataHoraResultado" timestamptz,
   "aluno" integer NOT NULL,
   "monitor" integer NOT NULL
 );
@@ -76,7 +76,6 @@ ALTER TABLE "alunos_necessidades" ADD FOREIGN KEY ("necessidades_id") REFERENCES
 CREATE TABLE "alunos_cursos" (
   "alunos_id" serial,
   "cursos_id" serial,
-  "matricula" bigint NOT NULL,
   PRIMARY KEY ("alunos_id", "cursos_id")
 );
 
@@ -94,8 +93,6 @@ ALTER TABLE "monitores" ADD FOREIGN KEY ("supervisor") REFERENCES "membros" ("id
 CREATE TABLE "membros_cargos" (
   "membros_id" serial,
   "cargos_id" serial,
-  "dataEntradaCargo" date NOT NULL,
-  "dataSaidaCargo" date,
   PRIMARY KEY ("membros_id", "cargos_id")
 );
 

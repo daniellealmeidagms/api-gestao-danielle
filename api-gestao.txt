@@ -30,10 +30,10 @@ Table cursos {
 Table acoes {
   id serial [pk]
   descricaoAcao varchar(255) [not null]
-  dataHoraCriacao datetime [default: 'now()']
+  dataHoraCriacao timestamptz [default: 'now()']
   motivacaoAcao varchar(255)
   resultadoAcao varchar(255)
-  dataHoraResultado datetime
+  dataHoraResultado timestamptz 
   aluno integer [not null]
   monitor integer [not null]
 }
