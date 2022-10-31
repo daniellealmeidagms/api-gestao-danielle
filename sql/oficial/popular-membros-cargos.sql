@@ -1,3 +1,6 @@
+alter table membros_cargos
+add column "dataEntradaCargo" date;
+
 insert into  membros_cargos ("membros_id","cargos_id", "dataEntradaCargo")
 values 
     ('2', '3', '01/03/2020'),

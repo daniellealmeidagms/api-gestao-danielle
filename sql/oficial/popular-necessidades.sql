@@ -1,4 +1,5 @@
-INSERT INTO necessidades(cid,"descricaoSimples","descricaoTecnica") VALUES 
+INSERT INTO necessidades(cid,"descricaoSimples","descricaoTecnica") 
+VALUES 
     ('F41','Ansiedade','Outros transtornos ansiosos'),
     ('F41.0','Pânico','Transtorno de pânico (ansiedade paroxística episódica)'),
     ('F84.1','TEA - Transtorno do Espectro Autista','Autismo atípico'),

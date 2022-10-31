@@ -1,4 +1,5 @@
-INSERT INTO cargos ("descricaoCargo") VALUES 
+INSERT INTO cargos ("descricaoCargo") 
+VALUES 
     ('Coordenador'),
     ('Professor'), 
     ('Supervisor'),
@@ -8,4 +9,4 @@ INSERT INTO cargos ("descricaoCargo") VALUES
     ('Intérprete de LIBRAS'),
     ('Médico'),
     ('Enfermeiro'),
-    ('Técnico Administrativo'),
+    ('Técnico Administrativo');
