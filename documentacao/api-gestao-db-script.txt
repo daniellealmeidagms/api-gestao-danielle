@@ -46,12 +46,13 @@ Table membros {
   emailMembro varchar(50) [not null]
   telefoneMembro bigint [not null]
   formacao varchar(50)
+  permissao char(1) [default: 'M'] // M: Monitor, T: Técnico, S: Supervisor, C: Coordenador
   ativo boolean [default: true]
 }
 
 Table alunos {
   id serial [pk]
-  fkMonitor bigint [not null]
+  fkMembro bigint [not null]
   cpfAluno char(11) [not null, unique]
   nomeAluno varchar(80) [not null]
   nomeSocialAluno varchar(80)
@@ -67,7 +68,6 @@ Table alunos {
 Table acoes {
   id serial [pk]
   fkAluno bigint [not null]
-  fkMembro bigint [not null]
   descricaoAcao varchar(255) [not null]
   statusAcao varchar(10) [default: 'Em Andamento']
   dataInicio date [default: 'now()']
@@ -78,13 +78,13 @@ Table acoes {
 // ---------- RELACIONAMENTOS ---------
 
 
-Ref: alunos.fkMonitor > membros.id
+Ref: alunos.fkMembro > membros.id
 
 Ref: acoes.fkAluno > alunos.id
 
-Ref: acoes.fkMembro > membros.id
-
 Ref: alunos.id <> necessidades.id
+
+Ref: membros.id <> horarios.id
 
 Ref: alunos.id <> cursos.id // matricula e sit matricula
 
@@ -92,4 +92,4 @@ Ref: alunos.id <> responsaveis.id // grau parentesco
 
 Ref: membros.id <> cargos.id // dataEntrada dataSaida
 
-Ref: membros.id <> horarios.id
+
