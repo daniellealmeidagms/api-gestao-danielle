@@ -70,8 +70,8 @@ Table acoes {
   fkMembro bigint [not null]
   descricaoAcao varchar(255) [not null]
   statusAcao varchar(10) [default: 'Em Andamento']
-  dataHoraInicio timestamptz [default: 'now()']
-  dataHoraFim timestamptz
+  dataInicio date [default: 'now()']
+  dataFim date
   ativo boolean [default: true]
 }
 
